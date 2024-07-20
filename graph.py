@@ -41,8 +41,12 @@ class Graph:
                 self.graph[user1].remove(user2)
 
     def print_graph(self):
+        friends_list=[]
         for user, friends in self.graph.items():
-            print(f"User {user.name} has friends: {friends}")
+            for friend in friends:
+                friends_list.append(friend.name)
+            print(f"User {user.name} has friends: {friends_list}")
+           
 
     def bfs(self,start_user):
         visited = set()
