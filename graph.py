@@ -19,4 +19,19 @@ class Graph:
                 if user in friends:
                     friends.remove(user)
 
+    def add_friend(self,user1,user2):
+        if user1 in self.graph and user2 in self.graph:
+            #adds the user2 to the user1 friends list
+            self.graph[user1].append(user2)
+            #adds the user1 to the user2 friends list
+            self.graph[user2].append(user1)
     
+    def remove_friend(self,user1,user2):
+        #check for existance of the users in the graph
+        if user1 in self.graph and user2 in self.graph:
+            #if the user2 is in the user1 friends list it is removed
+            if user1 in self.graph[user2]:
+                self.graph[user2].remove(user1)
+            #if the user1 is in the user2 friends list it is removed
+            if user2 in self.graph[user1]:
+                self.graph[user1].remove(user2)
