@@ -41,3 +41,7 @@ for user, distance in distances.items():
     print(f"User {user.name}: {distance}")
 
         
+components = graph.connected_components()
+print("\nConnected components in the graph:")
+for component in components:
+    print(component)
