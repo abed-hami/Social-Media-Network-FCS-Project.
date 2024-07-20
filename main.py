@@ -34,4 +34,10 @@ dfs_traversal = graph.dfs(user1)
 print("\nDFS Traversal starting from User 1:")
 print(dfs_traversal)
 
- 
+       
+distances = graph.dijkstra(user1)
+print("\nShortest distances from User 1 using Dijkstra's algorithm:")
+for user, distance in distances.items():
+    print(f"User {user.name}: {distance}")
+
+        
