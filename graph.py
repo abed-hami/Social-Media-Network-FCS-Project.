@@ -76,4 +76,23 @@ class Graph:
 
         return traversal
     
+    def dijkstra(self, start_user):
+        distances = {user: float('infinity') for user in self.graph}
+        distances[start_user] = 0
+        priority_queue = [(0, start_user)]
+
+        while priority_queue:
+            current_distance, current_user = heapq.heappop(priority_queue)
+
+            if current_distance > distances[current_user]:
+                continue
+
+            for neighbor in self.graph[current_user]:
+                distance = current_distance + 1  
+                if distance < distances[neighbor]:
+                    distances[neighbor] = distance
+                    heapq.heappush(priority_queue, (distance, neighbor))
+
+        return distances
+    
     
