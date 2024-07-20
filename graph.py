@@ -35,3 +35,7 @@ class Graph:
             #if the user1 is in the user2 friends list it is removed
             if user2 in self.graph[user1]:
                 self.graph[user1].remove(user2)
+
+    def print_graph(self):
+        for user, friends in self.graph.items():
+            print(f"User {user.name} has friends: {friends}")
