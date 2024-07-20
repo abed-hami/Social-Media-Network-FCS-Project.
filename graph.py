@@ -95,4 +95,21 @@ class Graph:
 
         return distances
     
+    def connected_components(self):
+        visited = set()
+        components = []
+
+        for user in self.graph:
+            if user not in visited:
+                component = []
+                stack = [user]
+                while stack:
+                    current_user = stack.pop()
+                    if current_user not in visited:
+                        visited.add(current_user)
+                        component.append(current_user.name)
+                        stack.extend(self.graph[current_user])
+                components.append(component)
+
+        return components
     
