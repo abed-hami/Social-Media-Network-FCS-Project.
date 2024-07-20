@@ -1,3 +1,7 @@
+from collections import deque
+import heapq
+
+
 class Graph:
     def __init__(self):
         self.graph = {}
@@ -39,3 +43,33 @@ class Graph:
     def print_graph(self):
         for user, friends in self.graph.items():
             print(f"User {user.name} has friends: {friends}")
+
+    def bfs(self,start_user):
+        visited = set()
+        queue = deque([start_user])
+        traversal = []
+
+        while queue:
+            user_id = queue.popleft()
+            if user_id not in visited:
+                visited.add(user_id)
+                traversal.append(user_id.id)
+                queue.extend(self.graph[user_id])
+
+        return traversal
+    
+    def dfs(self, start_user):
+        visited = set()
+        stack = [start_user]
+        traversal = []
+
+        while stack:
+            user_id = stack.pop()
+            if user_id not in visited:
+                visited.add(user_id)
+                traversal.append(user_id.id)
+                stack.extend(self.graph[user_id])
+
+        return traversal
+    
+    
