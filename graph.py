@@ -163,11 +163,31 @@ class Graph:
     
     
     def sort_graph_by_name(self):
-        sorted_users = sorted(self.graph.keys(), key=lambda x: x.name)
-        new_graph = {user: self.graph[user] for user in sorted_users}
+        # Create an empty list to store the users
+        users = []
+
+        # Loop through each user in the graph
+        for user in self.graph:
+            # Add the user to the list
+            users.append(user)
+
+        # Sort the list of users by their names
+        users.sort(key=lambda x: x.name)
+
+        # Create an empty dictionary to store the new graph
+        new_graph = {}
+
+        # Loop through each user in the sorted list
+        for user in users:
+            # Add the user and their corresponding value to the new graph
+            new_graph[user] = self.graph[user]
+
+        # Replace the original graph with the new sorted graph
         self.graph = new_graph
 
     def sort_graph_by_friends(self):
+        #sort the graph by number of friends
         sorted_users = sorted(self.graph.keys(), key=lambda x: len(self.graph[x]), reverse=True)
+        #sort the keys of the graph based on number of friends
         new_graph = {user: self.graph[user] for user in sorted_users}
         self.graph = new_graph
