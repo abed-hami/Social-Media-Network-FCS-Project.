@@ -16,9 +16,9 @@ graph.add_user(user3)
 graph.add_user(user4)
 
       
-graph.add_friend(user1, user2)
-graph.add_friend(user2, user3)
-graph.add_friend(user3, user4)
+graph.add_friend(user1, user2,1)
+graph.add_friend(user2, user3,1)
+graph.add_friend(user3, user4,4)
 
         
 print("Graph after adding users and relationships:")
@@ -35,11 +35,9 @@ print("\nDFS Traversal starting from User 1:")
 print(dfs_traversal)
 
        
-distances = graph.dijkstra(user1)
-print("\nShortest distances from User 1 using Dijkstra's algorithm:")
-for user, distance in distances.items():
-    print(f"User {user.name}: {distance}")
-
+distance, path = graph.dijkstra(user1, user2)
+print(f"\nShortest path distance: {distance}")
+print(f"Path: {[user.name for user in path]}")
         
 components = graph.connected_components()
 print("\nConnected components in the graph:")
