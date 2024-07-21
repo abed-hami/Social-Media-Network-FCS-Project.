@@ -2,7 +2,7 @@ from collections import deque
 import heapq
 
 class Graph:
-    
+
     def __init__(self):
         self.graph = {}
 
@@ -160,3 +160,9 @@ class Graph:
 
         # Return the shortest distance and the shortest path
         return distances[end_user], path
+    
+    
+    def sort_graph_by_name(self):
+        sorted_users = sorted(self.graph.keys(), key=lambda x: x.name)
+        new_graph = {user: self.graph[user] for user in sorted_users}
+        self.graph = new_graph
