@@ -182,12 +182,20 @@ class Graph:
             # Add the user and their corresponding value to the new graph
             new_graph[user] = self.graph[user]
 
-        # Replace the original graph with the new sorted graph
         self.graph = new_graph
 
     def sort_graph_by_friends(self):
-        #sort the graph by number of friends
-        sorted_users = sorted(self.graph.keys(), key=lambda x: len(self.graph[x]), reverse=True)
-        #sort the keys of the graph based on number of friends
-        new_graph = {user: self.graph[user] for user in sorted_users}
+        # Create a list of users and their friend counts
+        user_friend_counts = []
+        for user, friends in self.graph.items():
+            user_friend_counts.append((user, len(friends)))
+
+        # Sort the list in descending order based on friend counts
+        user_friend_counts.sort(key=lambda x: x[1], reverse=True)
+
+        # Create a new graph with the sorted users
+        new_graph = {}
+        for user, _ in user_friend_counts:
+            new_graph[user] = self.graph[user]
+
         self.graph = new_graph
