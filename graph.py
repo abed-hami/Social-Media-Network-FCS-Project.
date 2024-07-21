@@ -166,3 +166,8 @@ class Graph:
         sorted_users = sorted(self.graph.keys(), key=lambda x: x.name)
         new_graph = {user: self.graph[user] for user in sorted_users}
         self.graph = new_graph
+
+    def sort_graph_by_friends(self):
+        sorted_users = sorted(self.graph.keys(), key=lambda x: len(self.graph[x]), reverse=True)
+        new_graph = {user: self.graph[user] for user in sorted_users}
+        self.graph = new_graph
