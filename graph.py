@@ -80,4 +80,34 @@ class Graph:
 
         return components
 
-    
+    def dijkstra(self, start_user, end_user):
+        if start_user not in self.graph or end_user not in self.graph:
+            return float('inf'), []
+
+        distances = {user: float('inf') for user in self.graph}
+        distances[start_user] = 0
+        previous_nodes = {user: None for user in self.graph}
+        priority_queue = [(0, start_user)]
+
+        while priority_queue:
+            current_distance, current_user = heapq.heappop(priority_queue)
+
+            if current_distance > distances[current_user]:
+                continue
+
+            for neighbor, weight in self.graph[current_user].items():
+                distance = current_distance + weight
+                if distance < distances[neighbor]:
+                    distances[neighbor] = distance
+                    previous_nodes[neighbor] = current_user
+                    heapq.heappush(priority_queue, (distance, neighbor))
+
+        path = []
+        current_node = end_user
+        while previous_nodes[current_node] is not None:
+            path.insert(0, current_node)
+            current_node = previous_nodes[current_node]
+        if path:
+            path.insert(0, start_user)
+
+        return distances[end_user], path
