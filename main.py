@@ -35,7 +35,10 @@ print("\nDFS Traversal starting from User 1:")
 print(dfs_traversal)
 
        
-
+distance, path = graph.dijkstra(user1, user2)
+print(f"\nShortest path distance: {distance}")
+print(f"Path: {[user.name for user in path]}")
+        
 components = graph.connected_components()
 print("\nConnected components in the graph:")
 for component in components:
