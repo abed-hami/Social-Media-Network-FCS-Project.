@@ -251,7 +251,10 @@ class Graph:
                 if friends[j] in self.graph[friends[i]]:
                     links += 1
         possible_links = len(friends) * (len(friends) - 1) / 2
-        return links / possible_links
+        if links>0:
+            return links/possible_links
+        else:
+            return 0
     
     def average_clustering_coefficient(self):
         total_clustering = sum(self.clustering_coeff(user) for user in self.graph)
@@ -264,3 +267,12 @@ class Graph:
         print(f"Average number of friends per user: {avg_friends:.2f}")
         print(f"Network density: {density:.2f}")
         print(f"Average clustering coefficient: {avg_clustering:.2f}")
+
+    def recommend_friends_by_connection(self,user):
+        friends = list(self.graph[user])
+        recommendation=[]
+        for friend in friends:
+            for other_friends in self.graph[friend]:
+                if other_friends not in friends and other_friends!=user:
+                    recommendation.append((other_friends.name,other_friends.email))
+        return recommendation

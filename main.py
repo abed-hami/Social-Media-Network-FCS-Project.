@@ -7,7 +7,7 @@ user3 = User(3, "Charlie","charlie@gmail.com")
 user4 = User(4, "David","david@gmail.com")
 user5 = User(5, "moe","moe@gmail.com")
 user6 = User(6, "Alex","alex@gmail.com")
-
+user7 = User(7, "Marwan","marwan@gmail.com")
 user6.add_interest("reading")
 user5.add_interest("writing")
 user6.add_post("hello hope u are doing well")
@@ -21,6 +21,7 @@ graph.add_user(user3)
 graph.add_user(user4)
 graph.add_user(user6)
 graph.add_user(user5)
+graph.add_user(user7)
       
 graph.add_friendship(user1, user4,1)
 graph.add_friendship(user2, user3,1)
@@ -58,5 +59,7 @@ print(f"\nGraph after sorting by friends number:{graph.sort_graph_by_friends()}"
 
 print(f"\nGraph after sorting by id number:{graph.sort_graph_by_id()}")
 
-print(f"binary search by id is {graph.binary_search_by_id(2)}")
-print(f"binary search by name {graph.binary_search_by_name("Alex")}")
+print(f"\nbinary search by id is {graph.binary_search_by_id(2)}")
+print(f"\nbinary search by name {graph.binary_search_by_name("Alex")}")
+print(f"\n display stats {graph.display_statistics()}")
+print(f"\nrecommendation for bob based on mutaual friends: {graph.recommend_friends_by_connection(user3)}")
