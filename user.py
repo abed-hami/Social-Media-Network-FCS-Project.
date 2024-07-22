@@ -11,7 +11,7 @@ class User:
         self.posts.append(post)
 
     def add_interest(self,interest):
-        self.posts.append(interest)
+        self.interests.append(interest)
 
     def update_profile(self,name=None,email=None):
         if name:
