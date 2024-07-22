@@ -257,4 +257,10 @@ class Graph:
         total_clustering = sum(self.clustering_coeff(user) for user in self.graph)
         return total_clustering / len(self.graph)
     
-    
+    def display_statistics(self):
+        avg_friends = self.average_friends()
+        density = self.network_density()
+        avg_clustering = self.average_clustering_coefficient()
+        print(f"Average number of friends per user: {avg_friends:.2f}")
+        print(f"Network density: {density:.2f}")
+        print(f"Average clustering coefficient: {avg_clustering:.2f}")
