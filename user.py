@@ -3,9 +3,9 @@ class User:
         self.id = id
         self.name = name
         self.email = email
-        self.friends=[]
         self.interests=[]
         self.posts=[]
+        self.friends=[]
         
     def add_post(self,post):
         self.posts.append(post)

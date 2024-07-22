@@ -1,6 +1,8 @@
 from collections import deque
 import heapq
 
+from user import User
+
 class Graph:
 
     def __init__(self):
@@ -21,11 +23,18 @@ class Graph:
                 if user in friends:
                     del friends[user]
 
-    def add_friend(self, user1, user2, weight):
+    def add_friendship(self, user1:User, user2:User, weight):
         #if both users are in the graph add them to each other and assign a weight to their relationship
         if user1 in self.graph and user2 in self.graph:
             self.graph[user1][user2] = weight
             self.graph[user2][user1] = weight
+        
+        #if they are not friends, add them to the list of friends of each other
+        if user1 not in user2.friends:
+            user2.friends.append(user1.name)
+        if user2 not in user1.friends:
+            user1.friends.append(user2.name)
+        
 
     def remove_friend(self, user1, user2):
         #if both users are in the graph remove them from each other
@@ -173,29 +182,16 @@ class Graph:
 
         # Sort the list of users by their names
         users.sort(key=lambda x: x.name)
-
-        # Create an empty dictionary to store the new graph
-        new_graph = {}
-
-        # Loop through each user in the sorted list
-        for user in users:
-            # Add the user and their corresponding value to the new graph
-            new_graph[user] = self.graph[user]
-
-        self.graph = new_graph
+        return [user.name for user in users]
 
     def sort_graph_by_friends(self):
         # Create a list of users and their friend counts
         user_friend_counts = []
         for user, friends in self.graph.items():
-            user_friend_counts.append((user, len(friends)))
+            user_friend_counts.append((user.name, len(friends)))
 
         # Sort the list in descending order based on friend counts
         user_friend_counts.sort(key=lambda x: x[1], reverse=True)
-
-        # Create a new graph with the sorted users
-        new_graph = {}
-        for user, _ in user_friend_counts:
-            new_graph[user] = self.graph[user]
-
-        self.graph = new_graph
+        
+        return user_friend_counts
+    

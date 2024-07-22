@@ -18,12 +18,12 @@ graph.add_user(user4)
 graph.add_user(user6)
 graph.add_user(user5)
       
-graph.add_friend(user1, user4,1)
-graph.add_friend(user2, user3,1)
-graph.add_friend(user4, user2,4)
-graph.add_friend(user2, user1,1)
-graph.add_friend(user2, user5,4)
-graph.add_friend(user3, user6,4)  
+graph.add_friendship(user1, user4,1)
+graph.add_friendship(user2, user3,1)
+graph.add_friendship(user4, user2,4)
+graph.add_friendship(user2, user1,1)
+graph.add_friendship(user2, user5,4)
+graph.add_friendship(user3, user6,4)  
 print("Graph after adding users and relationships:")
 graph.print_graph()
 
@@ -48,10 +48,8 @@ for component in components:
     print(component)
 
 
-graph.sort_graph_by_name()
-print("\nGraph after sorting by name:")
-graph.print_graph()
+print(f"\nGraph after sorting by name: {graph.sort_graph_by_name()}")
 
-graph.sort_graph_by_friends()
-print("\nGraph after sorting by friends number:")
-graph.print_graph()
+print(f"\nGraph after sorting by friends number:{graph.sort_graph_by_friends()}")
+
+
