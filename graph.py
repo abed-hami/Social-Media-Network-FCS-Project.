@@ -190,8 +190,18 @@ class Graph:
         for user, friends in self.graph.items():
             user_friend_counts.append((user.name, len(friends)))
 
-        # Sort the list in descending order based on friend counts
-        user_friend_counts.sort(key=lambda x: x[1], reverse=True)
+        # Sort the list in ascending order based on friend counts
+        user_friend_counts.sort(key=lambda x: x[1])
         
         return user_friend_counts
     
+    def sort_graph_by_id(self):
+        # Create a list of users and their IDs
+        user_ids = []
+        #loop over the keys of the dictionary
+        for user in self.graph.keys():
+            #append the user name alongside the id to the list
+            user_ids.append((user.name, user.id))
+        #sort it based on id 
+        user_ids.sort(key=lambda x:x[1])
+        return user_ids

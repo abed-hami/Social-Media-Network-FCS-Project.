@@ -52,4 +52,5 @@ print(f"\nGraph after sorting by name: {graph.sort_graph_by_name()}")
 
 print(f"\nGraph after sorting by friends number:{graph.sort_graph_by_friends()}")
 
+print(f"\nGraph after sorting by id number:{graph.sort_graph_by_id()}")
 
