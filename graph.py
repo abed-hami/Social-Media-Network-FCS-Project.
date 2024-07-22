@@ -268,11 +268,14 @@ class Graph:
         print(f"Network density: {density:.2f}")
         print(f"Average clustering coefficient: {avg_clustering:.2f}")
 
-    def recommend_friends_by_connection(self,user):
-        friends = list(self.graph[user])
-        recommendation=[]
-        for friend in friends:
-            for other_friends in self.graph[friend]:
-                if other_friends not in friends and other_friends!=user:
-                    recommendation.append((other_friends.name,other_friends.email))
-        return recommendation
+    def recommend_friends_by_connection(self):
+        for user in self.graph.keys():
+            friends = list(self.graph[user])
+            recommendation=[]
+            for friend in friends:
+                for other_friends in self.graph[friend]:
+                    if other_friends not in friends and other_friends!=user:
+                        recommendation.append((other_friends.name,other_friends.email))
+            print(f"{user.name}'s recommendation based on matuality: {recommendation} ") 
+    
+    
