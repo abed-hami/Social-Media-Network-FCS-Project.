@@ -243,6 +243,15 @@ class Graph:
         possible_connections= (users_num*(users_num)-1)/2
         return actual_connections/possible_connections
     
+    def clustering_coeff(self,user):
+        friends = list(self.graph[user])
+        links = 0
+        for i in range(len(friends)):
+            for j in range(i + 1, len(friends)):
+                if friends[j] in self.graph[friends[i]]:
+                    links += 1
+        possible_links = len(friends) * (len(friends) - 1) / 2
+        return links / possible_links
     
     
     
