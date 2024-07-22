@@ -253,6 +253,8 @@ class Graph:
         possible_links = len(friends) * (len(friends) - 1) / 2
         return links / possible_links
     
-    
+    def average_clustering_coefficient(self):
+        total_clustering = sum(self.clustering_coeff(user) for user in self.graph)
+        return total_clustering / len(self.graph)
     
     
