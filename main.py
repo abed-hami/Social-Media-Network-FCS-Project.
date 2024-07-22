@@ -63,7 +63,10 @@ print(f"\nGraph after sorting by friends number:{graph.sort_graph_by_friends()}"
 print(f"\nGraph after sorting by id number:{graph.sort_graph_by_id()}")
 
 print(f"\nbinary search by id is {graph.binary_search_by_id(2)}")
-print(f"\nbinary search by name {graph.binary_search_by_name("Alex")}")
+print(f"\nbinary search by name is {graph.binary_search_by_name('Bob')}")
+
 print(f"\n display stats {graph.display_statistics()}")
 print(graph.recommend_friends_by_connection())
 print(graph.recommend_friends_by_interests())
+
+graph.visualize_graph()
