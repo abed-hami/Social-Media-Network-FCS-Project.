@@ -7,6 +7,11 @@ user3 = User(3, "Charlie","charlie@gmail.com")
 user4 = User(4, "David","david@gmail.com")
 user5 = User(5, "moe","moe@gmail.com")
 user6 = User(6, "Alex","alex@gmail.com")
+
+user6.add_interest("reading")
+user5.add_interest("writing")
+user6.add_post("hello hope u are doing well")
+
        
 graph = Graph()
 
@@ -54,8 +59,5 @@ print(f"\nGraph after sorting by friends number:{graph.sort_graph_by_friends()}"
 
 print(f"\nGraph after sorting by id number:{graph.sort_graph_by_id()}")
 
-result = graph.binary_search_by_id(2)
-if result:
-    print(f"User found: {result}")
-else:
-    print("User not found")
+print(f"binary search by id is {graph.binary_search_by_id(2)}")
+print(f"binary search by name {graph.binary_search_by_name("Alex")}")

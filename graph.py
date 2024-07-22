@@ -217,4 +217,17 @@ class Graph:
                 left = mid + 1
             else:
                 right = mid - 1
-        return None
+        return "User doesn't exist"
+    
+    def binary_search_by_name(self, name):
+        sorted_list=sorted(self.graph.keys(), key=lambda user: user.name.lower())
+        left, right = 0, len(sorted_list) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if sorted_list[mid].name.lower() == name.lower():
+                return (sorted_list[mid].id,sorted_list[mid].name,sorted_list[mid].email,sorted_list[mid].posts,sorted_list[mid].interests)
+            elif sorted_list[mid].name.lower() < name.lower():
+                left = mid + 1
+            else:
+                right = mid - 1
+        return "User Not Found"
