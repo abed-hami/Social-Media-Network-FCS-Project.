@@ -244,3 +244,6 @@ class Graph:
         return actual_connections/possible_connections
     
     
+    
+    
+    
