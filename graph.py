@@ -205,3 +205,16 @@ class Graph:
         #sort it based on id 
         user_ids.sort(key=lambda x:x[1])
         return user_ids
+    
+    def binary_search_by_id(self, user_id):
+        sorted_list=self.sort_graph_by_id()
+        left, right = 0, len(sorted_list) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if sorted_list[mid][1] == user_id:
+                return sorted_list[mid][0]
+            elif sorted_list[mid][1] < user_id:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return None

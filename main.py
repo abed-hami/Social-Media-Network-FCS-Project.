@@ -54,3 +54,8 @@ print(f"\nGraph after sorting by friends number:{graph.sort_graph_by_friends()}"
 
 print(f"\nGraph after sorting by id number:{graph.sort_graph_by_id()}")
 
+result = graph.binary_search_by_id(2)
+if result:
+    print(f"User found: {result}")
+else:
+    print("User not found")
