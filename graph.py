@@ -237,4 +237,10 @@ class Graph:
         users_num = len(self.graph)
         return sum_of_friends/users_num
     
+    def network_density(self):
+        actual_connections = sum(len(friends) for friends in self.graph.values())
+        users_num = len(self.graph)
+        possible_connections= (users_num*(users_num)-1)/2
+        return actual_connections/possible_connections
+    
     
