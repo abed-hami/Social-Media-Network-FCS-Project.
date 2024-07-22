@@ -11,7 +11,6 @@ user6 = User(6, "Alex","alex@gmail.com")
 user6.add_interest("reading")
 user5.add_interest("writing")
 user6.add_post("hello hope u are doing well")
-
        
 graph = Graph()
 

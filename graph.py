@@ -231,3 +231,10 @@ class Graph:
             else:
                 right = mid - 1
         return "User Not Found"
+    
+    def average_friends(self):
+        sum_of_friends = sum(len(friends) for friends in self.graph.values())
+        users_num = len(self.graph)
+        return sum_of_friends/users_num
+    
+    
