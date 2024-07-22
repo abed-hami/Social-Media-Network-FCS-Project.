@@ -278,4 +278,14 @@ class Graph:
                         recommendation.append((other_friends.name,other_friends.email))
             print(f"{user.name}'s recommendation based on matuality: {recommendation} ") 
     
-    
+    def recommend_friends_by_interests(self):
+        for user in self.graph.keys():
+            
+            recommendation=[]
+            user_interests=set(user.interests)
+            for friend in self.graph.keys():
+                if user!=friend:
+                    interests= user_interests.intersection(friend.interests)
+                    if interests:
+                        recommendation.append((friend.name,friend.email))
+            print(f"{user.name}'s recommendation based on interests: {recommendation} ") 
