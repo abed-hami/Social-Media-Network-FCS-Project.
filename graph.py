@@ -1,6 +1,7 @@
 from collections import deque
 import heapq
-
+import networkx as nx
+import matplotlib.pyplot as plt
 from user import User
 
 class Graph:
@@ -289,3 +290,32 @@ class Graph:
                     if interests:
                         recommendation.append((friend.name,friend.email))
             print(f"{user.name}'s recommendation based on interests: {recommendation} ") 
+    
+    def to_networkx_graph(self):
+        G = nx.Graph()
+        for user in self.graph:
+            G.add_node(user.name)
+            for friend, weight in self.graph[user].items():
+                G.add_edge(user.name, friend.name, weight=weight)
+        return G
+
+    def visualize_graph(self):
+        network = self.to_networkx_graph()
+        pos = nx.spring_layout(network)  
+        plt.figure(figsize=(10, 8))
+
+       
+        nx.draw_networkx_nodes(network, pos, node_size=1000, node_color='skyblue')
+        
+        
+        nx.draw_networkx_edges(network, pos, width=2)
+        
+        
+        nx.draw_networkx_labels(network, pos, font_size=12, font_color='black')
+        
+        
+        edge_labels = nx.get_edge_attributes(network, 'weight')
+        nx.draw_networkx_edge_labels(network, pos, edge_labels=edge_labels, font_color='red')
+
+        plt.title("Social Network Graph")
+        plt.show()
