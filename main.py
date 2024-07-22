@@ -7,6 +7,10 @@ user3 = User(3, "Charlie","charlie@gmail.com")
 user4 = User(4, "David","david@gmail.com")
 user5 = User(5, "moe","moe@gmail.com")
 user6 = User(6, "Alex","alex@gmail.com")
+
+user6.add_interest("reading")
+user5.add_interest("writing")
+user6.add_post("hello hope u are doing well")
        
 graph = Graph()
 
@@ -18,12 +22,12 @@ graph.add_user(user4)
 graph.add_user(user6)
 graph.add_user(user5)
       
-graph.add_friend(user1, user4,1)
-graph.add_friend(user2, user3,1)
-graph.add_friend(user4, user2,4)
-graph.add_friend(user2, user1,1)
-graph.add_friend(user2, user5,4)
-graph.add_friend(user3, user6,4)  
+graph.add_friendship(user1, user4,1)
+graph.add_friendship(user2, user3,1)
+graph.add_friendship(user4, user2,4)
+graph.add_friendship(user2, user1,1)
+graph.add_friendship(user2, user5,4)
+graph.add_friendship(user3, user6,4)  
 print("Graph after adding users and relationships:")
 graph.print_graph()
 
@@ -48,10 +52,11 @@ for component in components:
     print(component)
 
 
-graph.sort_graph_by_name()
-print("\nGraph after sorting by name:")
-graph.print_graph()
+print(f"\nGraph after sorting by name: {graph.sort_graph_by_name()}")
 
-graph.sort_graph_by_friends()
-print("\nGraph after sorting by friends number:")
-graph.print_graph()
+print(f"\nGraph after sorting by friends number:{graph.sort_graph_by_friends()}")
+
+print(f"\nGraph after sorting by id number:{graph.sort_graph_by_id()}")
+
+print(f"binary search by id is {graph.binary_search_by_id(2)}")
+print(f"binary search by name {graph.binary_search_by_name("Alex")}")

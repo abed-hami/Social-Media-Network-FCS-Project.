@@ -1,6 +1,8 @@
 from collections import deque
 import heapq
 
+from user import User
+
 class Graph:
 
     def __init__(self):
@@ -21,11 +23,18 @@ class Graph:
                 if user in friends:
                     del friends[user]
 
-    def add_friend(self, user1, user2, weight):
+    def add_friendship(self, user1:User, user2:User, weight):
         #if both users are in the graph add them to each other and assign a weight to their relationship
         if user1 in self.graph and user2 in self.graph:
             self.graph[user1][user2] = weight
             self.graph[user2][user1] = weight
+        
+        #if they are not friends, add them to the list of friends of each other
+        if user1 not in user2.friends:
+            user2.friends.append(user1.name)
+        if user2 not in user1.friends:
+            user1.friends.append(user2.name)
+        
 
     def remove_friend(self, user1, user2):
         #if both users are in the graph remove them from each other
@@ -163,11 +172,89 @@ class Graph:
     
     
     def sort_graph_by_name(self):
-        sorted_users = sorted(self.graph.keys(), key=lambda x: x.name)
-        new_graph = {user: self.graph[user] for user in sorted_users}
-        self.graph = new_graph
+        # Create an empty list to store the users
+        users = []
+
+        # Loop through each user in the graph
+        for user in self.graph:
+            # Add the user to the list
+            users.append(user)
+
+        # Sort the list of users by their names
+        users.sort(key=lambda x: x.name)
+        return [user.name for user in users]
 
     def sort_graph_by_friends(self):
-        sorted_users = sorted(self.graph.keys(), key=lambda x: len(self.graph[x]), reverse=True)
-        new_graph = {user: self.graph[user] for user in sorted_users}
-        self.graph = new_graph
+        # Create a list of users and their friend counts
+        user_friend_counts = []
+        for user, friends in self.graph.items():
+            user_friend_counts.append((user.name, len(friends)))
+
+        # Sort the list in ascending order based on friend counts
+        user_friend_counts.sort(key=lambda x: x[1])
+        
+        return user_friend_counts
+    
+    def sort_graph_by_id(self):
+        # Create a list of users and their IDs
+        user_ids = []
+        #loop over the keys of the dictionary
+        for user in self.graph.keys():
+            #append the user name alongside the id to the list
+            user_ids.append((user.name, user.id))
+        #sort it based on id 
+        user_ids.sort(key=lambda x:x[1])
+        return user_ids
+    
+    def binary_search_by_id(self, user_id):
+        sorted_list=self.sort_graph_by_id()
+        left, right = 0, len(sorted_list) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if sorted_list[mid][1] == user_id:
+                return sorted_list[mid][0]
+            elif sorted_list[mid][1] < user_id:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return "User doesn't exist"
+    
+    def binary_search_by_name(self, name):
+        sorted_list=sorted(self.graph.keys(), key=lambda user: user.name.lower())
+        left, right = 0, len(sorted_list) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if sorted_list[mid].name.lower() == name.lower():
+                return (sorted_list[mid].id,sorted_list[mid].name,sorted_list[mid].email,sorted_list[mid].posts,sorted_list[mid].interests)
+            elif sorted_list[mid].name.lower() < name.lower():
+                left = mid + 1
+            else:
+                right = mid - 1
+        return "User Not Found"
+    
+    def average_friends(self):
+        sum_of_friends = sum(len(friends) for friends in self.graph.values())
+        users_num = len(self.graph)
+        return sum_of_friends/users_num
+    
+    def network_density(self):
+        actual_connections = sum(len(friends) for friends in self.graph.values())
+        users_num = len(self.graph)
+        possible_connections= (users_num*(users_num)-1)/2
+        return actual_connections/possible_connections
+    
+    def clustering_coeff(self,user):
+        friends = list(self.graph[user])
+        links = 0
+        for i in range(len(friends)):
+            for j in range(i + 1, len(friends)):
+                if friends[j] in self.graph[friends[i]]:
+                    links += 1
+        possible_links = len(friends) * (len(friends) - 1) / 2
+        return links / possible_links
+    
+    def average_clustering_coefficient(self):
+        total_clustering = sum(self.clustering_coeff(user) for user in self.graph)
+        return total_clustering / len(self.graph)
+    
+    

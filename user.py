@@ -3,15 +3,15 @@ class User:
         self.id = id
         self.name = name
         self.email = email
-        self.friends=[]
         self.interests=[]
         self.posts=[]
+        self.friends=[]
         
     def add_post(self,post):
         self.posts.append(post)
 
     def add_interest(self,interest):
-        self.posts.append(interest)
+        self.interests.append(interest)
 
     def update_profile(self,name=None,email=None):
         if name:
