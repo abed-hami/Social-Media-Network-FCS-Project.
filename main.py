@@ -3,8 +3,64 @@ from graph import Graph
 
 
 def main():
-    print("Welcome to the FCS Social Network")
 
+    print("Welcome to the FCS Social Network!")
+    print("\nCreate and Visualize relations using our comprehensive application using NetworkX!")
+    print("\nFell free to choose an option from our menu below")
+    print("\nOur Control Menu:")
+    id=1
+    
+    graph = Graph()
+    while True:
+        print("\nUSER ACTIONS:")
+        print("1. Create a new user")
+        print("2. Add a post for a user")
+        print("3. Add an interest")
+        print("4. Update user name")
+        print("5. Update user email")
+        print("-------------------------")
+        print("GRAPH-USER ACTIONS:")
+        print("6. Add user to the network")
+        print("7. Remove user to the network")
+        print("8. View users list")
+        print("9. Add friendship between 2 users with wight")
+        print("10. Remove friendship")
+        print("11. Print users and their friends' list")
+        print("-------------------------")
+        print("GRAPH ALGORITHMS ACTIONS:")
+        print("12. Use BFS")
+        print("13. Use DFS")
+        print("14. Use Dijkstra between 2 users")
+        print("15. View connected components")
+        print("-------------------------")
+        print("GRAPH SORTING AND SEARCHING ACTIONS:")
+        print("16. Sort graph by name")
+        print("17. Sort graph by id")
+        print("18. Sort graph by number of friends")
+        print("19. User binary search by id")
+        print("20. User binary search by name")
+        print("-------------------------")
+        print("GRAPH STATS/RECOMMENDATION ACTIONS:")
+        print("21. View graph stats")
+        print("22. View user stats")
+        print("23. Matuality based friends recommendation")
+        print("24. Interests based friends recommendation")
+        print("-------------------------")
+        print("GRAPH VISUALIZATION:")
+        print("25. View graph visualization")
+        print("-------------------------")
+        print("26. Exit")
+
+        choice = int(input("\nEnter a choice: "))
+        if choice == 1:
+            name = input("Name: ")
+            email = input("Email: ")
+
+            id+=1
+
+
+        if(choice==26):
+            break
 
     user1 = User(1, "Alice","alice@gmail.com")
     user2 = User(2, "Bob","bob@gmail.com")
@@ -19,7 +75,7 @@ def main():
     user7.add_interest("writing")
     user6.add_post("hello hope u are doing well")
         
-    graph = Graph()
+    
 
             
     graph.add_user(user1)

@@ -15,12 +15,11 @@ class User:
         self.interests.append(interest)
         print("interest added!")
 
-    def update_profile(self,name):
-        self.name = name
+    def update_name(self,user,name):
+        user.name = name
         print("name updated successfully")
        
-
-    def update_email(self,email):
-        self.email = email
+    def update_email(self,user,email):
+        user.email = email
         print("email updated successfully")
     

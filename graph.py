@@ -10,6 +10,12 @@ class Graph:
     def __init__(self):
         self.graph = {}
 
+    def view_users(self):
+        users_list=[]
+        for user in self.graph.keys():
+            users_list.append(user.name)
+        return users_list
+
     def add_user(self, user):
         #if user doesn't exits in the graph add a dictionairy as a value
         if user not in self.graph:
@@ -43,7 +49,7 @@ class Graph:
                 user1.friends.append(user2.name)
             else:
                  print(f"{user1.name} and {user1.name} are already friends")
-                 
+
             print("friendship was created between users!")
         else:
             print("one or both users not in the graph")
