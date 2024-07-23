@@ -1,7 +1,5 @@
 import tkinter as tk
 from tkinter import messagebox
-
-
 from graph import Graph
 from user import User
 
@@ -95,7 +93,6 @@ class GUI:
         self.visualize_button.grid(row=0, column=3, padx=10, pady=5, sticky=tk.W) 
 
          
-
         self.friendsframe = tk.Frame(self.root)
         self.friendsframe.grid(row=5, column=0, padx=20, pady=10, sticky=tk.W)
 
@@ -271,6 +268,7 @@ class GUI:
             self.notification(f"BFS starting from {user.name}: {graph.bfs(user)}")
         except Exception as e:
             self.notification("enter Id")
+            
     def dfs(self):
         try:
             user_id=int(self.id_entry.get())
