@@ -112,11 +112,17 @@ class GUI:
         self.removefriend_button = tk.Button(self.friendsframe, text="Remove Friendship", command=self.remove_friendship)
         self.removefriend_button.grid(row=1, column=2, padx=10, pady=5, sticky=tk.W) 
 
+        self.stats_button = tk.Button(self.friendsframe, text="Print Stats", command=self.print_stats)
+        self.stats_button.grid(row=1, column=3, padx=10, pady=5, sticky=tk.W) 
+
         self.print_button = tk.Button(self.friendsframe, text="Print graph", command=self.print_graph)
         self.print_button.grid(row=2, column=2, padx=10, pady=5, sticky=tk.W) 
 
-        self.components_button = tk.Button(self.friendsframe, text="Connected Components", command=self.print_graph)
-        self.components_button.grid(row=2, column=2, padx=10, pady=5, sticky=tk.W)
+        self.sort_button = tk.Button(self.friendsframe, text="Sort graph", command=self.sort)
+        self.sort_button.grid(row=2, column=4, padx=10, pady=5, sticky=tk.W) 
+
+        self.components_button = tk.Button(self.friendsframe, text="Connected Components", command=self.connected_components)
+        self.components_button.grid(row=2, column=3, padx=10, pady=5, sticky=tk.W)
 
         self.addfriend_button = tk.Button(self.friendsframe, text="Dijkstra", command=self.dijkstra)
         self.addfriend_button.grid(row=0, column=3, padx=10, pady=5, sticky=tk.W) 
@@ -224,6 +230,28 @@ class GUI:
 
     def print_graph(self):
         self.graph.print_graph()
+        self.notification("graph was printed")
+
+    def sort(self):
+        print(f"\nGraph after sorting by name: {graph.sort_graph_by_name()}")
+        print(f"\nGraph after sorting by friends num: {graph.sort_graph_by_friends()}")
+        print(f"\nGraph after sorting by id: {graph.sort_graph_by_id()}")
+        self.notification("sorted lists was printed")
+
+    def print_stats(self):
+        print(f"\n display stats {graph.display_statistics()}")
+        self.notification("stats were printed")
+    
+    def recommendation(self):
+        print("\nrecommended friends for each user based on matuality:")
+        print(graph.recommend_friends_by_connection())
+
+        print("\nrecommended friends for each user based on common intersts:")
+        print(graph.recommend_friends_by_interests())
+
+    def visualize(self):
+        graph.visualize_graph()
+        
     
     def bfs(self):
         try:
