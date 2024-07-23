@@ -254,7 +254,7 @@ class Graph:
         while left <= right:
             mid = (left + right) // 2
             if sorted_list[mid].name.lower() == name.lower():
-                return (sorted_list[mid].id,sorted_list[mid].name,sorted_list[mid].email,sorted_list[mid].posts,sorted_list[mid].interests)
+                return sorted_list[mid]
             elif sorted_list[mid].name.lower() < name.lower():
                 left = mid + 1
             else:
