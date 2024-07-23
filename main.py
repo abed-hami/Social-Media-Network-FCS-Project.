@@ -20,35 +20,35 @@ def main():
         print("5. Update user email")
         print("-------------------------")
         print("GRAPH-USER ACTIONS:")
-        print("7. Remove user to the network")
-        print("8. View users list")
-        print("9. Add friendship between 2 users with wight")
-        print("10. Remove friendship")
-        print("11. Print users and their friends' list")
+        print("6. Remove user to the network")
+        print("7. View users list")
+        print("8. Add friendship between 2 users with wight")
+        print("9. Remove friendship")
+        print("10. Print users and their friends' list")
         print("-------------------------")
         print("GRAPH ALGORITHMS ACTIONS:")
-        print("12. Use BFS")
-        print("13. Use DFS")
-        print("14. Use Dijkstra between 2 users")
-        print("15. View connected components")
+        print("11. Use BFS")
+        print("12. Use DFS")
+        print("13. Use Dijkstra between 2 users")
+        print("14. View connected components")
         print("-------------------------")
         print("GRAPH SORTING AND SEARCHING ACTIONS:")
-        print("16. Sort graph by name")
-        print("17. Sort graph by id")
-        print("18. Sort graph by number of friends")
-        print("19. User binary search by id")
-        print("20. User binary search by name")
+        print("15. Sort graph by name")
+        print("16. Sort graph by id")
+        print("17. Sort graph by number of friends")
+        print("18. User binary search by id")
+        print("19. User binary search by name")
         print("-------------------------")
         print("GRAPH STATS/RECOMMENDATION ACTIONS:")
-        print("21. View graph stats")
-        print("22. View user stats")
-        print("23. Matuality based friends recommendation")
-        print("24. Interests based friends recommendation")
+        print("20. View graph stats")
+        print("21. View user stats")
+        print("22. Matuality based friends recommendation")
+        print("23. Interests based friends recommendation")
         print("-------------------------")
         print("GRAPH VISUALIZATION:")
-        print("25. View graph visualization")
+        print("24. View graph visualization")
         print("-------------------------")
-        print("26. Exit")
+        print("25. Exit")
 
         choice = int(input("\nEnter a choice: "))
         if choice == 1:
@@ -77,7 +77,39 @@ def main():
             user= graph.binary_search_by_id(id)
             name=input("enter new email: ")
             user.update_email(email)
-        
+        if choice==6:
+            id=int(input("Enter id of user to access the account: "))
+            user= graph.binary_search_by_id(id)
+            print("Are you sure you want to delete your account?")
+            answer=input("\ny/n")
+            if(answer=="y"):
+                graph.remove_user(user)
+        if choice==7:
+            print(graph.view_users())
+            print("do you want to continue?")
+            answer=input("\ny/n")
+            if(answer=="n"):
+                break
+        if choice==8:
+            id1=int(input("Enter id of user to access the account: "))
+            id2=int(input("Enter id of user you want to add"))
+            weight=int(input("Enter friendship weight"))
+            graph.add_friendship(id1,id2,weight)
+            answer=input("\ny/n")
+            if(answer=="n"):
+                break
+        if choice==9:
+            id1=int(input("Enter id of user to access the account: "))
+            id2=int(input("Enter id of user you want to add"))
+            graph.remove_friend(id1,id2)
+            answer=input("\ny/n")
+            if(answer=="n"):
+                break
+        if choice==10:
+            graph.print_graph()
+            answer=input("\ny/n")
+            if(answer=="n"):
+                break
         if(choice==26):
             break
 
