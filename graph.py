@@ -42,17 +42,20 @@ class Graph:
         user1=self.binary_search_by_id(id1)
         user2=self.binary_search_by_id(id2)
         if user1 in self.graph and user2 in self.graph:
-            self.graph[user1][user2] = weight
-            self.graph[user2][user1] = weight
+            
+            
             #if they are not friends, add them to the list of friends of each other
-            if user1 not in user2.friends:
+            if user1 not in self.graph[user2]:
+                self.graph[user1][user2] = weight
                 user2.friends.append(user1.name)
-            if user2 not in user1.friends:
+                print("friendship was created between users!")
+            if user2 not in self.graph[user1]:
+                self.graph[user2][user1] = weight
                 user1.friends.append(user2.name)
             else:
                  print(f"{user1.name} and {user1.name} are already friends")
 
-            print("friendship was created between users!")
+            
         else:
             print("one or both users not in the graph")
 
