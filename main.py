@@ -8,7 +8,7 @@ def main():
     print("\nCreate and Visualize relations using our comprehensive application using NetworkX!")
     print("\nFell free to choose an option from our menu below")
     print("\nOur Control Menu:")
-    id=1
+    id=10
     
     graph = Graph()
     while True:
@@ -20,7 +20,6 @@ def main():
         print("5. Update user email")
         print("-------------------------")
         print("GRAPH-USER ACTIONS:")
-        print("6. Add user to the network")
         print("7. Remove user to the network")
         print("8. View users list")
         print("9. Add friendship between 2 users with wight")
@@ -55,10 +54,30 @@ def main():
         if choice == 1:
             name = input("Name: ")
             email = input("Email: ")
-
+            user=User(id,name,email)
+            graph.add_user(user)
             id+=1
-
-
+        if choice==2:
+            id=int(input("Enter id of user to access the account: "))
+            user= graph.binary_search_by_id(id)
+            post = input("Enter post: ")
+            user.add_post(post)
+        if choice==3:
+            id=int(input("Enter id of user to access the account: "))
+            user= graph.binary_search_by_id(id)
+            interest = input("Enter interest: ")
+            user.add_interest(interest)
+        if choice==4:
+            id=int(input("Enter id of user to access the account: "))
+            user= graph.binary_search_by_id(id)
+            name=input("enter new name: ")
+            user.update_name(name)
+        if choice==5:
+            id=int(input("Enter id of user to access the account: "))
+            user= graph.binary_search_by_id(id)
+            name=input("enter new email: ")
+            user.update_email(email)
+        
         if(choice==26):
             break
 
@@ -86,13 +105,9 @@ def main():
     graph.add_user(user5)
     graph.add_user(user7)
         
-    graph.add_friendship(user1, user4,1)
-    graph.add_friendship(user2, user3,1)
-    graph.add_friendship(user4, user2,4)
-    graph.add_friendship(user2, user1,1)
-    graph.add_friendship(user2, user5,4)
-    graph.add_friendship(user3, user6,4)  
-    graph.add_friendship(user7, user6,4)  
+    graph.add_friendship(1, 2,1)
+    graph.add_friendship(2, 3,1)
+    
     print("Graph after adding users and relationships:")
     graph.print_graph()
 
@@ -122,8 +137,8 @@ def main():
     print(f"\nGraph after sorting by friends number:{graph.sort_graph_by_friends()}")
 
     print(f"\nGraph after sorting by id number:{graph.sort_graph_by_id()}")
-
-    print(f"\nbinary search by id is {graph.binary_search_by_id(2)}")
+    userss=graph.binary_search_by_id(2)
+    print(f"\nbinary search by id is {userss.name}")
     print(f"\nbinary search by name is {graph.binary_search_by_name('Bob')}")
 
     print(f"\n display stats {graph.display_statistics()}")

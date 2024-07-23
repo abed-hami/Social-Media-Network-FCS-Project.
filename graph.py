@@ -37,8 +37,10 @@ class Graph:
         else:
             print("user not in the graph")
 
-    def add_friendship(self, user1:User, user2:User, weight):
+    def add_friendship(self, id1, id2, weight):
         #if both users are in the graph add them to each other and assign a weight to their relationship
+        user1=self.binary_search_by_id(id1)
+        user2=self.binary_search_by_id(id2)
         if user1 in self.graph and user2 in self.graph:
             self.graph[user1][user2] = weight
             self.graph[user2][user1] = weight
@@ -234,13 +236,13 @@ class Graph:
     
     def binary_search_by_id(self, user_id):
         #get the sorted list by id
-        sorted_list=self.sort_graph_by_id()
+        sorted_list=sorted(self.graph.keys(), key=lambda user: user.id)
         left, right = 0, len(sorted_list) - 1
         while left <= right:
             mid = (left + right) // 2
-            if sorted_list[mid][1] == user_id:
-                return sorted_list[mid][0]
-            elif sorted_list[mid][1] < user_id:
+            if sorted_list[mid].id == user_id:
+                return sorted_list[mid]
+            elif sorted_list[mid].id < user_id:
                 left = mid + 1
             else:
                 right = mid - 1
