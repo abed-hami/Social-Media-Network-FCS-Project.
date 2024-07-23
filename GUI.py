@@ -257,6 +257,8 @@ class GUI:
         print("\nrecommended friends for each user based on common intersts:")
         print(graph.recommend_friends_by_interests())
 
+        self.notification("recommendations were printed")
+
     def visualize(self):
         graph.visualize_graph()
         
