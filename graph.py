@@ -10,10 +10,19 @@ class Graph:
     def __init__(self):
         self.graph = {}
 
+    def view_users(self):
+        users_list=[]
+        for user in self.graph.keys():
+            users_list.append(user.name)
+        return users_list
+
     def add_user(self, user):
         #if user doesn't exits in the graph add a dictionairy as a value
         if user not in self.graph:
             self.graph[user] = {}
+            print("user added to the graph")
+        else:
+            print("user already in the graph")
 
     def remove_user(self, user):
         #if the user is in the graph delete it
@@ -24,27 +33,49 @@ class Graph:
                 #if the desired user is a friend with other users, remove that user
                 if user in friends:
                     del friends[user]
+            print("user was removed!")
+        else:
+            print("user not in the graph")
 
-    def add_friendship(self, user1:User, user2:User, weight):
+    def add_friendship(self, id1, id2, weight):
         #if both users are in the graph add them to each other and assign a weight to their relationship
+        user1=self.binary_search_by_id(id1)
+        user2=self.binary_search_by_id(id2)
         if user1 in self.graph and user2 in self.graph:
-            self.graph[user1][user2] = weight
-            self.graph[user2][user1] = weight
-        
-        #if they are not friends, add them to the list of friends of each other
-        if user1 not in user2.friends:
-            user2.friends.append(user1.name)
-        if user2 not in user1.friends:
-            user1.friends.append(user2.name)
-        
+            
+            
+            #if they are not friends, add them to the list of friends of each other
+            if user1 not in self.graph[user2]:
+                self.graph[user1][user2] = weight
+                user2.friends.append(user1.name)
+                print("friendship was created between users!")
+            if user2 not in self.graph[user1]:
+                self.graph[user2][user1] = weight
+                user1.friends.append(user2.name)
+            else:
+                 print(f"{user1.name} and {user1.name} are already friends")
+
+            
+        else:
+            print("one or both users not in the graph")
 
     def remove_friend(self, user1, user2):
         #if both users are in the graph remove them from each other
+        user1=self.binary_search_by_id(user1)
+        user2=self.binary_search_by_id(user2)
         if user1 in self.graph and user2 in self.graph:
             if user2 in self.graph[user1]:
                 del self.graph[user1][user2]
+            else:
+                print(f"{user2.name} not in {user1.name}'s friends")
             if user1 in self.graph[user2]:
                 del self.graph[user2][user1]
+            else:
+                 print(f"{user1.name} not in {user2.name}'s friends")
+
+            print("friendship was removed between users")
+        else:
+            print("one or both users not in the graph")
 
     def print_graph(self):
         #prints users and their friends list
@@ -210,13 +241,13 @@ class Graph:
     
     def binary_search_by_id(self, user_id):
         #get the sorted list by id
-        sorted_list=self.sort_graph_by_id()
+        sorted_list=sorted(self.graph.keys(), key=lambda user: user.id)
         left, right = 0, len(sorted_list) - 1
         while left <= right:
             mid = (left + right) // 2
-            if sorted_list[mid][1] == user_id:
-                return sorted_list[mid][0]
-            elif sorted_list[mid][1] < user_id:
+            if sorted_list[mid].id == user_id:
+                return sorted_list[mid]
+            elif sorted_list[mid].id < user_id:
                 left = mid + 1
             else:
                 right = mid - 1
@@ -228,7 +259,7 @@ class Graph:
         while left <= right:
             mid = (left + right) // 2
             if sorted_list[mid].name.lower() == name.lower():
-                return (sorted_list[mid].id,sorted_list[mid].name,sorted_list[mid].email,sorted_list[mid].posts,sorted_list[mid].interests)
+                return sorted_list[mid]
             elif sorted_list[mid].name.lower() < name.lower():
                 left = mid + 1
             else:
