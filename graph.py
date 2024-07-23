@@ -14,6 +14,9 @@ class Graph:
         #if user doesn't exits in the graph add a dictionairy as a value
         if user not in self.graph:
             self.graph[user] = {}
+            print("user added to the graph")
+        else:
+            print("user already in the graph")
 
     def remove_user(self, user):
         #if the user is in the graph delete it
@@ -24,27 +27,42 @@ class Graph:
                 #if the desired user is a friend with other users, remove that user
                 if user in friends:
                     del friends[user]
+            print("user was removed!")
+        else:
+            print("user not in the graph")
 
     def add_friendship(self, user1:User, user2:User, weight):
         #if both users are in the graph add them to each other and assign a weight to their relationship
         if user1 in self.graph and user2 in self.graph:
             self.graph[user1][user2] = weight
             self.graph[user2][user1] = weight
-        
-        #if they are not friends, add them to the list of friends of each other
-        if user1 not in user2.friends:
-            user2.friends.append(user1.name)
-        if user2 not in user1.friends:
-            user1.friends.append(user2.name)
-        
+            #if they are not friends, add them to the list of friends of each other
+            if user1 not in user2.friends:
+                user2.friends.append(user1.name)
+            if user2 not in user1.friends:
+                user1.friends.append(user2.name)
+            else:
+                 print(f"{user1.name} and {user1.name} are already friends")
+                 
+            print("friendship was created between users!")
+        else:
+            print("one or both users not in the graph")
 
     def remove_friend(self, user1, user2):
         #if both users are in the graph remove them from each other
         if user1 in self.graph and user2 in self.graph:
             if user2 in self.graph[user1]:
                 del self.graph[user1][user2]
+            else:
+                print(f"{user2.name} not in {user1.name}'s friends")
             if user1 in self.graph[user2]:
                 del self.graph[user2][user1]
+            else:
+                 print(f"{user1.name} not in {user2.name}'s friends")
+
+            print("friendship was removed between users")
+        else:
+            print("one or both users not in the graph")
 
     def print_graph(self):
         #prints users and their friends list
