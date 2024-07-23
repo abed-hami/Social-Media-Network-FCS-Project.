@@ -58,6 +58,8 @@ class Graph:
 
     def remove_friend(self, user1, user2):
         #if both users are in the graph remove them from each other
+        user1=self.binary_search_by_id(user1)
+        user2=self.binary_search_by_id(user2)
         if user1 in self.graph and user2 in self.graph:
             if user2 in self.graph[user1]:
                 del self.graph[user1][user2]
