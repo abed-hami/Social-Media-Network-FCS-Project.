@@ -3,6 +3,7 @@ import heapq
 import networkx as nx
 import matplotlib.pyplot as plt
 from user import User
+import typer
 
 class Graph:
 
@@ -208,6 +209,7 @@ class Graph:
         return user_ids
     
     def binary_search_by_id(self, user_id):
+        #get the sorted list by id
         sorted_list=self.sort_graph_by_id()
         left, right = 0, len(sorted_list) - 1
         while left <= right:
@@ -234,29 +236,48 @@ class Graph:
         return "User Not Found"
     
     def average_friends(self):
+        #get the total sum of friendships
         sum_of_friends = sum(len(friends) for friends in self.graph.values())
+        #get the number of users
         users_num = len(self.graph)
+        #return the average
         return sum_of_friends/users_num
     
     def network_density(self):
+        #get the total sum of friendships
         actual_connections = sum(len(friends) for friends in self.graph.values())
+        #get the number of users
         users_num = len(self.graph)
+        #get the number of possible connections using th network_density equation
         possible_connections= (users_num*(users_num)-1)/2
         return actual_connections/possible_connections
     
-    def clustering_coeff(self,user):
+    def clustering_coeff(self, user):
+        # Get a list of the user's friends
         friends = list(self.graph[user])
+        
+        # Initialize a variable to count the number of links between friends
         links = 0
+        
+        # Iterate over each friend
         for i in range(len(friends)):
+            # Iterate over each friend that comes after the current friend
             for j in range(i + 1, len(friends)):
+                # Check if friend j is a friend of friend i
                 if friends[j] in self.graph[friends[i]]:
+                    # If they are friends, increment the links count
                     links += 1
+        
+        # Calculate the total number of possible links between friends
         possible_links = len(friends) * (len(friends) - 1) / 2
-        if links>0:
-            return links/possible_links
+        
+        # If there are possible links, return the ratio of actual links to possible links
+        if possible_links > 0:
+            return links / possible_links
+        # If there are no possible links, return 0
         else:
             return 0
-    
+        
     def average_clustering_coefficient(self):
         total_clustering = sum(self.clustering_coeff(user) for user in self.graph)
         return total_clustering / len(self.graph)
@@ -270,52 +291,83 @@ class Graph:
         print(f"Average clustering coefficient: {avg_clustering:.2f}")
 
     def recommend_friends_by_connection(self):
+        #loop over all the users in the graph
         for user in self.graph.keys():
+            #store the user's friends in list
             friends = list(self.graph[user])
+            #create a recommendation list
             recommendation=[]
+            #iterate over each friend from the friends list
             for friend in friends:
+                #iterate over the friend's friends
                 for other_friends in self.graph[friend]:
+                    #check if the other friend is not in the user's friends list and not  the user itself
                     if other_friends not in friends and other_friends!=user:
+                        #append tuple having both the name and email in the list 
                         recommendation.append((other_friends.name,other_friends.email))
             print(f"{user.name}'s recommendation based on matuality: {recommendation} ") 
     
     def recommend_friends_by_interests(self):
+        #loop over all the users in the graph
         for user in self.graph.keys():
-            
             recommendation=[]
+            #create a set containing the inetersts of the user
             user_interests=set(user.interests)
+            #iterate over all the users in the graph
             for friend in self.graph.keys():
+                #check if the user is not the current user
                 if user!=friend:
+                    #create interests that have te common interests they share
                     interests= user_interests.intersection(friend.interests)
+                    #if similar interest occur append to the recommendation list
                     if interests:
                         recommendation.append((friend.name,friend.email))
             print(f"{user.name}'s recommendation based on interests: {recommendation} ") 
     
     def to_networkx_graph(self):
+        # Create a new NetworkX graph object
         G = nx.Graph()
+
+        # Iterate over each user in the self.graph data structure
         for user in self.graph:
+            # Add a node to the NetworkX graph with the user's name
             G.add_node(user.name)
+            
+            # Iterate over each friend of the user and their corresponding weight
             for friend, weight in self.graph[user].items():
+                # Add an edge to the NetworkX graph between the user and their friend with the given weight
                 G.add_edge(user.name, friend.name, weight=weight)
+
+        # Return the constructed NetworkX graph
         return G
 
     def visualize_graph(self):
+        # Convert the self.graph data structure to a NetworkX graph object
         network = self.to_networkx_graph()
+        
+        # Calculate the positions of the nodes in the graph using the spring layout algorithm
         pos = nx.spring_layout(network)  
+        
+        # Create a new figure with a specified size
         plt.figure(figsize=(10, 8))
 
-       
+        # Draw the nodes in the graph with a specified size and color
         nx.draw_networkx_nodes(network, pos, node_size=1000, node_color='skyblue')
         
-        
+        # Draw the edges in the graph with a specified width
         nx.draw_networkx_edges(network, pos, width=2)
         
-        
+        # Draw the labels for the nodes in the graph with a specified font size and color
         nx.draw_networkx_labels(network, pos, font_size=12, font_color='black')
         
-        
+        # Get the edge attributes (weights) from the NetworkX graph
         edge_labels = nx.get_edge_attributes(network, 'weight')
+        
+        # Draw the edge labels in the graph with a specified font color
         nx.draw_networkx_edge_labels(network, pos, edge_labels=edge_labels, font_color='red')
 
+        # Set the title of the graph
         plt.title("Social Network Graph")
+        
+        # Display the graph
         plt.show()
