@@ -8,7 +8,7 @@ def main():
     print("\nCreate and Visualize relations using our comprehensive application using NetworkX!")
     print("\nFell free to choose an option from our menu below")
     print("\nOur Control Menu:")
-    id=10
+    Id=10
     
     graph = Graph()
     while True:
@@ -54,9 +54,9 @@ def main():
         if choice == 1:
             name = input("Name: ")
             email = input("Email: ")
-            user=User(id,name,email)
+            user=User(Id,name,email)
             graph.add_user(user)
-            id+=1
+            Id+=1
         if choice==2:
             id=int(input("Enter id of user to access the account: "))
             user= graph.binary_search_by_id(id)
@@ -107,6 +107,37 @@ def main():
                 break
         if choice==10:
             graph.print_graph()
+            answer=input("\ny/n")
+            if(answer=="n"):
+                break
+        if choice==11:
+            id=int(input("Enter Id of user to start BFS from: "))
+            user=graph.binary_search_by_id(id)
+            print(f"BFS starting from {user.name}: {graph.bfs(user)}")
+            answer=input("\ny/n")
+            if(answer=="n"):
+                break
+        if choice==12:
+            id=int(input("Enter Id of user to start DFS from: "))
+            user=graph.binary_search_by_id(id)
+            print(f"DFS starting from {user.name}: {graph.dfs(user)}")
+            answer=input("\ny/n")
+            if(answer=="n"):
+                break
+        if choice==13:
+            id1=int(input("Enter Id of user1 for Dijkstra: "))
+            id2=int(input("Enter Id of user2 for Dijkstra: "))
+            user1=graph.binary_search_by_id(id1)
+            user2=graph.binary_search_by_id(id2)
+            print(f"Using Dijkstra algorithms: {graph.dijkstra(user1,user2)}" )
+            answer=input("\ny/n")
+            if(answer=="n"):
+                break
+        if choice==14:
+            components = graph.connected_components()
+            print("\nConnected components in the graph:")
+            for component in components:
+                print(component)
             answer=input("\ny/n")
             if(answer=="n"):
                 break
