@@ -91,6 +91,9 @@ class GUI:
         self.recommendation_button = tk.Button(self.detailsframe, text="View Recommendations", command=self.recommendation)
         self.recommendation_button.grid(row=1, column=3, padx=10, pady=5, sticky=tk.W) 
 
+        self.visualize_button = tk.Button(self.detailsframe, text="Visualize Graph", command=self.visualize, background="red")
+        self.visualize_button.grid(row=0, column=3, padx=10, pady=5, sticky=tk.W) 
+
          
 
         self.friendsframe = tk.Frame(self.root)
