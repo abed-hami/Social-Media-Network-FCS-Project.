@@ -88,6 +88,11 @@ class GUI:
         self.interest_button = tk.Button(self.detailsframe, text="Add Interest", command=self.add_interest)
         self.interest_button.grid(row=1, column=2, padx=10, pady=5, sticky=tk.W) 
 
+        self.recommendation_button = tk.Button(self.detailsframe, text="View Recommendations", command=self.recommendation)
+        self.recommendation_button.grid(row=1, column=3, padx=10, pady=5, sticky=tk.W) 
+
+         
+
         self.friendsframe = tk.Frame(self.root)
         self.friendsframe.grid(row=5, column=0, padx=20, pady=10, sticky=tk.W)
 
