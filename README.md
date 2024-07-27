@@ -17,6 +17,7 @@ Technologies:
 3-TKinter (for GUI)
 
 Clone Repository:
+
 ![carbon (2)](https://github.com/user-attachments/assets/058725c3-3941-4fd6-aaf8-d89ab79bb8b1)
 
 Usage:
@@ -24,5 +25,15 @@ Usage:
 2- Use the GUI
 
 CLI Example:
+
 ![carbon](https://github.com/user-attachments/assets/290eefc1-6a5a-455f-9f7f-569bb3bc0758)
+
+GUI Example:
+
+![networkx](https://github.com/user-attachments/assets/fe7dd626-15e9-4191-9cb9-0f88945491ca)
+
+Graph Visualization:
+
+![graph](https://github.com/user-attachments/assets/8b7f3a04-5c3a-4de3-9200-6af0c5987f28)
+
 
