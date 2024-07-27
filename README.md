@@ -16,4 +16,14 @@ Technologies:
 
 3-TKinter (for GUI)
 
-![repo](https://github.com/user-attachments/assets/44fbab1f-d40a-40e1-824d-72a4da480efe)
+Clone Repository:
+
+![carbon (1)](https://github.com/user-attachments/assets/ad50ea81-9bbb-4837-adc7-1db4831f0c6c)
+
+Usage:
+1- Use the customized CLI
+2- Use the GUI
+
+CLI Example:
+![carbon](https://github.com/user-attachments/assets/290eefc1-6a5a-455f-9f7f-569bb3bc0758)
+
