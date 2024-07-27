@@ -9,7 +9,10 @@ Graph visisualiztion is also one of the key features of the project, with it you
 With a comprehensive CLI and GUI users of the project can easily navigate through it and use its features.
 
 Technologies:
+
 1-Python
+
 2-NetworkX (for vsualization)
+
 3-TKinter (for GUI)
 
