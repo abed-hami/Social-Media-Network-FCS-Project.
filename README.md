@@ -28,17 +28,24 @@ Clone Repository:
 Usage Ways:
 
 1- Use the customized CLI
+
 2- Use the GUI
 
 
 How To Use:
 
 1- Create user by inserting name and email
+
 2- Create friendship between users and weights to friendship
+
 3- If you want to unfriend just click remove friendship
+
 4- Visualize connections 
+
 5- Print sorted users by name, id, friends number
+
 6- Use traversal methods (BFS, DFS)
+
 7- Show each user recommended friends based on different criteria
 
 
