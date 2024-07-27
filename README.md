@@ -17,8 +17,7 @@ Technologies:
 3-TKinter (for GUI)
 
 Clone Repository:
-
-![carbon (1)](https://github.com/user-attachments/assets/ad50ea81-9bbb-4837-adc7-1db4831f0c6c)
+![carbon (2)](https://github.com/user-attachments/assets/058725c3-3941-4fd6-aaf8-d89ab79bb8b1)
 
 Usage:
 1- Use the customized CLI
