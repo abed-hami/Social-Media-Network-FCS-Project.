@@ -43,7 +43,6 @@ class Graph:
         user2=self.binary_search_by_id(id2)
         if user1 in self.graph and user2 in self.graph:
             
-            
             #if they are not friends, add them to the list of friends of each other
             if user1 not in self.graph[user2]:
                 self.graph[user1][user2] = weight
