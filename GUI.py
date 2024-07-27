@@ -152,17 +152,20 @@ class GUI:
             self.graph.remove_friend(user1,user2)
             self.notification("Friendship removed")
         except Exception as e:
-            self.notification("Error Creating Bond")
+            self.notification("Error Removing Bond")
 
     def add_user(self):
         try:
             user_id = self.user_id
             user_name = self.name_entry.get()
             user_email = self.email_entry.get()
-            user=User(user_id, user_name, user_email)
-            self.graph.add_user(user)
-            self.notification("user added successfully")
-            self.user_id+=1
+            if user_name!="" and user_email!="":
+                user=User(user_id, user_name, user_email)
+                self.graph.add_user(user)
+                self.notification("user added successfully")
+                self.user_id+=1
+            else:
+                self.notification("Please fill in all fields")
         except Exception as e:
             self.notification("error occured")
     
