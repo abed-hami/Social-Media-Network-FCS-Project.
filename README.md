@@ -8,6 +8,8 @@ Graph visisualiztion is also one of the key features of the project, with it you
 
 With a comprehensive CLI and GUI users of the project can easily navigate through it and use its features.
 
+
+
 Technologies:
 
 1-Python
@@ -16,13 +18,29 @@ Technologies:
 
 3-TKinter (for GUI)
 
+
+
 Clone Repository:
 
 ![carbon (2)](https://github.com/user-attachments/assets/058725c3-3941-4fd6-aaf8-d89ab79bb8b1)
 
-Usage:
+
+Usage Ways:
+
 1- Use the customized CLI
 2- Use the GUI
+
+
+How To Use:
+
+1- Create user by inserting name and email
+2- Create friendship between users and weights to friendship
+3- If you want to unfriend just click remove friendship
+4- Visualize connections 
+5- Print sorted users by name, id, friends number
+6- Use traversal methods (BFS, DFS)
+7- Show each user recommended friends based on different criteria
+
 
 CLI Example:
 
